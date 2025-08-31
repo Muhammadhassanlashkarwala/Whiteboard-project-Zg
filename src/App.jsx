@@ -5,31 +5,30 @@ import { useEffect } from "react";
 function App() {
   const appID = parseInt(import.meta.env.VITE_ZEGO_APP_ID),
     serverUrl = import.meta.env.VITE_ZEGO_SERVER_URL,
-    userID = "786786",
-    roomID = "78783",
+    userID = "99988",
+    roomID = "room190",
     userName = "Hassan",
     token =
-      "04AAAAAGixjCkADOZ+xJ3FcUsjYE8B2gCxloFqnBLrNzidleggxk0ioSDfoiQxuCBDL/uq0PM7BAv4roiaAbDWzdla/eUf37jiJnwaiGU3jXzH+EWZepBf2p/rBKBILtetZ8wCE8UC43KbPT/Q4gC5xzVORcU/Df69lYv4WubJsMZdb56/4eKHeAGxeTVbv7IEy8uVvnaObgzKMf2GWjhA1w5yBLqi/bpoBHu5PWnzyYx6l4thddGNeZT2Xz9Pohw+cCIxi0OTU8TlAQ==";
+      "04AAAAAGi0G6IADN9+CBTuVY691kBNiQCvB3RmaPqImtZPOM8IsV3t9DdHIZJ17CkLNdC/Lc919/xQyZ4FFDoYdVvA+cuh6mQvU+jVEUVb2agiLWVq56Vjr1vkfBZXlPzIzcBYsP7mnRkyP2AghZhg73pcNbUu77bjodnWXyRk/R+zgW5IIlobAkfna1XOOYY8asHrK/MLd4PbU+oM85xoch2DBz0fihdVUea0fZGf3Kgwph0ykGFNLXDA8NfECcPRNl0iMXGLqAE=";
 
   // Initialize the ZegoExpressEngine instance
   const zg = new ZegoExpressEngine(appID, serverUrl);
-
   const zegoSuperBoard = ZegoSuperBoardManager.getInstance();
 
   const initSuperBoard = async () => {
-    await zegoSuperBoard.init(zg, {
-      parentDomID: "superboard",
-      appID,
-      userID,
-      token,
-    });
-
     await zg.loginRoom(
       roomID,
       token,
       { userID, userName },
       { userUpdate: true }
     );
+
+    await zegoSuperBoard.init(zg, {
+      parentDomID: "superboard",
+      appID,
+      userID,
+      token,
+    });
 
     await zegoSuperBoard.createWhiteboardView({
       name: "My project",
@@ -38,6 +37,7 @@ function App() {
       pageCount: 1,
     });
   };
+
   useEffect(() => {
     if (zegoSuperBoard) {
       initSuperBoard();
@@ -52,5 +52,3 @@ function App() {
 }
 
 export default App;
-
-// 27: 30
