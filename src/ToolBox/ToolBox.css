@@ -1,0 +1,34 @@
+#Tool-box {
+  background: #222;
+  padding: 10px 20px;
+  position: absolute;
+  height: 100%;
+  z-index: 2;
+  top: 0;
+  right: 0;
+}
+
+#Tool-box .tools-container,
+#Tool-box .tools-container .tool {
+  display: flex;
+  align-items: center;
+  list-style: none;
+}
+
+#Tool-box .tools-container {
+  flex-direction: column;
+  gap: 20px;
+}
+
+#Tool-box .tools-container .tool {
+  background-color: #303030;
+  border-radius: 10px;
+  font-size: 20px;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#Tool-box .tools-container .tool.active {
+  background-color: #5100ff;
+  color: #fafafa;
+}

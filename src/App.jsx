@@ -1,8 +1,11 @@
 import { ZegoSuperBoardManager } from "zego-superboard-web";
 import { ZegoExpressEngine } from "zego-express-engine-webrtc";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import ToolBox from "./ToolBox/ToolBox";
 
 function App() {
+  const [currentTool, setCurrentTool] = useState(null);
+
   const appID = parseInt(import.meta.env.VITE_ZEGO_APP_ID),
     serverUrl = import.meta.env.VITE_ZEGO_SERVER_URL,
     userID = "99988",
@@ -22,6 +25,7 @@ function App() {
       { userID, userName },
       { userUpdate: true }
     );
+    setCurrentTool(zegoSuperBoard.getToolType());
 
     await zegoSuperBoard.init(zg, {
       parentDomID: "superboard",
@@ -47,6 +51,13 @@ function App() {
   return (
     <div className="app">
       <div id="superboard"></div>
+      <ToolBox
+        currentTool={currentTool}
+        onClick={(tool) => {
+          zegoSuperBoard.setToolType(tool.type);
+          setCurrentTool(tool.type);
+        }}
+      />
     </div>
   );
 }

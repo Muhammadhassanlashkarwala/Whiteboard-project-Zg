@@ -57,8 +57,25 @@ const tools = [
     type: 256,
   },
 ];
-const ToolBox = () => {
-  return <div>ToolBox</div>;
+const ToolBox = ({ onClick, currentTool }) => {
+  return (
+    <div id="Tool-box">
+      <ul className="tools-container">
+        {tools.map((tool, index) => (
+          <li
+            title={tool.name}
+            className={`size-40 tool ${
+              currentTool === tool.type ? "active" : ""
+            }`}
+            onClick={() => onClick(tool)}
+            key={index}
+          >
+            <tool.icon />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 export default ToolBox;
